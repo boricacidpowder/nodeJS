@@ -1,0 +1,25 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "My first nodeJS container",
+  "main": "main.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	 "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/boricacidpowder/nodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boricacidpowder/nodeJS/issues"
+  },
+  "homepage": "https://github.com/boricacidpowder/nodeJS#readme"
+}
