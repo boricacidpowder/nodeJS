@@ -10,9 +10,10 @@ var app = http.createServer(function(request,response){
     var filePath = queryData.id;
 	if(pathname === '/') {
 		if(queryData.id === undefined){
-			fs.readFile(`data/${filePath}`, 'utf8', function(err, description){	
-			var title = 'Welcome';
-			var description = 'hello';
+			//fs.readFile(`data/${filePath}`, 'utf8', function(err, description){	
+			fs.readdir('./data', function(err, filelist){
+				console.log(filelist);
+			});
 			var template = `
 			<!doctype html>
 			<html>
@@ -34,7 +35,7 @@ var app = http.createServer(function(request,response){
 			`;
 			response.writeHead(200);
 			response.end(template);
-			});
+			//});
 		}else{
 			fs.readFile(`data/${filePath}`, 'utf8', function(err, description){
 				var title = 'Welcome';
