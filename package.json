@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "node": "^16.5.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "sanitize-html": "^2.4.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/boricacidpowder/nodeJS/issues"
   },
-  "homepage": "https://github.com/boricacidpowder/nodeJS#readme"
+  "homepage": "https://github.com/boricacidpowder/nodeJS#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
