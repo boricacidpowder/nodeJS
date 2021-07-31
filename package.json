@@ -2,7 +2,7 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "My first nodeJS container",
-  "main": "main.js",
+  "main": "express/main2.js",
   "dependencies": {
     "express": "^4.17.1",
     "node": "^16.5.0",
