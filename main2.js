@@ -5,6 +5,8 @@ var path = require('path');
 var sanitizeHtml = require('sanitize-html');
 var template = require('./lib/template.js');
 var qs = require('querystring');
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false}));
 
 
 //route, routing
@@ -65,13 +67,7 @@ app.get('/create', function(req, res){
       });
 })
 app.post('/create_process', function(req, res){
-	var body = '';
-      req.on('data', function(data){
-	  body = body + data;
-	})
-
-	req.on('end', function(){
-          var post = qs.parse(body);
+		  var post = req.body;
           var title = post.title;
           var description = post.description;
           fs.writeFile(`data/${title}`, description, 'utf8', function(err){
@@ -79,7 +75,6 @@ app.post('/create_process', function(req, res){
             res.end();
           })
       });
-	})
 
 app.get('/update/:pageId', function(req, res){
 	   fs.readdir('./data', function(error, filelist){
@@ -108,12 +103,7 @@ app.get('/update/:pageId', function(req, res){
 	})
 		
 app.post('/update_process', function(req, res){
-	var body = '';
-      req.on('data', function(data){
-          body = body + data;
-      });
-      req.on('end', function(){
-          var post = qs.parse(body);
+		  var post = req.body;
           var id = post.id;
           var title = post.title;
           var description = post.description;
@@ -124,22 +114,16 @@ app.post('/update_process', function(req, res){
             })
     	  });
       });
-	});
 
 app.post('/delete_process', function(req, res){
-  var body = '';
-  req.on('data', function(data){
-      body = body + data;
-  });
-  req.on('end', function(){
-      var post = qs.parse(body);
+	  var post = req.body;
       var id = post.id;
       var filteredId = path.parse(id).base;
       fs.unlink(`data/${filteredId}`, function(error){
         res.redirect('/');
       })
   });
-});
+
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
 });
