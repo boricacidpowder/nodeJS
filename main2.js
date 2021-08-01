@@ -6,11 +6,12 @@ var sanitizeHtml = require('sanitize-html');
 var template = require('./lib/template.js');
 var qs = require('querystring');
 var bodyParser = require('body-parser');
-var compression = require('compression')
+var compression = require('compression');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(compression());
-//왜 안되지 시발;;
+//왜 안되지 ;;
+app.use(express.static('public'));
 app.get('*', function(req, res, next) {
 	fs.readdir('./data', function(error, filelist){
 		req.list = filelist;
@@ -26,16 +27,24 @@ app.get('/', function(req, res) {
     var description = 'Hello, Node.js';
     var list = template.list(req.list);
     var html = template.HTML(title, list,
-      `<h2>${title}</h2>${description}`,
+      `<h2>${title}</h2>${description}
+	  <img src="/img/hello.jpg" style="width:300px; displat:block; margin-top:10px;">
+	  `,
       `<a href="/create">create</a>`
+	  
     ); 
     res.send(html);
  
 });
 
-app.get('/page/:pageId', function(req, res) { 
+app.get('/page/:pageId', function(req, res, next) { 
     var filteredId = path.parse(req.params.pageId).base;
     fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
+		if(err) {
+			next(err);
+		}else {
+			
+		
       var title = req.params.pageId;
       var sanitizedTitle = sanitizeHtml(title);
       var sanitizedDescription = sanitizeHtml(description, {
@@ -52,7 +61,7 @@ app.get('/page/:pageId', function(req, res) {
           </form>`
       );
       res.send(html);
-   
+   }
   });
 });
 
@@ -131,6 +140,12 @@ app.post('/delete_process', function(req, res){
       })
   });
 
+	
+app.use(function(req, res, next){
+		res.status(404).send('Sorry cant find that!');
+	});
+	
+	
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
 });
