@@ -43,22 +43,20 @@ app.get('/page/:pageId', function(req, res, next) {
 		if(err) {
 			next(err);
 		}else {
-			
-		
-      var title = req.params.pageId;
-      var sanitizedTitle = sanitizeHtml(title);
-      var sanitizedDescription = sanitizeHtml(description, {
-        allowedTags:['h1']
-      });
-      var list = template.list(req.list);
-      var html = template.HTML(sanitizedTitle, list,
-        `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-        ` <a href="/create">create</a>
-          <a href="/update/${sanitizedTitle}">update</a>
-          <form action="/delete_process" method="post">
-            <input type="hidden" name="id" value="${sanitizedTitle}">
-            <input type="submit" value="delete">
-          </form>`
+		  var title = req.params.pageId;
+		  var sanitizedTitle = sanitizeHtml(title);
+		  var sanitizedDescription = sanitizeHtml(description, {
+			allowedTags:['h1']
+		  });
+		  var list = template.list(req.list);
+		  var html = template.HTML(sanitizedTitle, list,
+			`<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
+			` <a href="/create">create</a>
+			  <a href="/update/${sanitizedTitle}">update</a>
+			  <form action="/delete_process" method="post">
+				<input type="hidden" name="id" value="${sanitizedTitle}">
+				<input type="submit" value="delete">
+			  </form>`
       );
       res.send(html);
    }
@@ -143,6 +141,10 @@ app.post('/delete_process', function(req, res){
 	
 app.use(function(req, res, next){
 		res.status(404).send('Sorry cant find that!');
+	});
+app.use(function(err, req, res, next){ //매개변수가 4개면 익스프레스 프레임워크는 에러핸들러로인식한다.
+		console.error(err.stack);
+		res.status(500).send('Something borke?!!');
 	});
 	
 	
