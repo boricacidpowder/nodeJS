@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
  
 });
 
-app.get('/page/:pageId', function(req, res, next) { 
+app.get('/topic/:pageId', function(req, res, next) { 
     var filteredId = path.parse(req.params.pageId).base;
     fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
 		if(err) {
@@ -51,9 +51,9 @@ app.get('/page/:pageId', function(req, res, next) {
 		  var list = template.list(req.list);
 		  var html = template.HTML(sanitizedTitle, list,
 			`<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-			` <a href="/create">create</a>
-			  <a href="/update/${sanitizedTitle}">update</a>
-			  <form action="/delete_process" method="post">
+			` <a href="topic/create">create</a>
+			  <a href="topic/update/${sanitizedTitle}">update</a>
+			  <form action="topic/delete_process" method="post">
 				<input type="hidden" name="id" value="${sanitizedTitle}">
 				<input type="submit" value="delete">
 			  </form>`
