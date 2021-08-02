@@ -6,11 +6,12 @@ http.createServer(function(req, res){
 	if(req.headers.cookie !== undefined){
 		cookies = cookie.parse(req.headers.cookie);
 	}
-	console.log(cookies.yum_cookie);
 	res.writeHead(200, {
 		'Set-Cookie':['yum_cookie=choco',
 					  'tes_cookie=str',
-					  `Permanent=cookies; Max-Age=${60*60*24*30}`  //Max-Age 쿠키를 언제 해지할지 지정(절대적)
+					  `Permanent=cookies; Max-Age=${60*60*24*30}`,//Max-Age 쿠키를 언제 해지할지 지정(절대적)
+					  'Secure=Secure; Secure',
+					  'HttpOnly=HttpOnly; HttpOnly'
 				]
 	});
 	res.end('Cookie!');
