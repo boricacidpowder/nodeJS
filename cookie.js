@@ -8,7 +8,13 @@ http.createServer(function(req, res){
 	}
 	console.log(cookies.yum_cookie);
 	res.writeHead(200, {
-		'Set-Cookie':['yum_cookie=choco', 'tes_cookie=str']
+		'Set-Cookie':['yum_cookie=choco',
+					  'tes_cookie=str',
+					  `Permanent=cookies; Max-Age=${60*60*24*30}`  //Max-Age 쿠키를 언제 해지할지 지정(절대적)
+				]
 	});
 	res.end('Cookie!');
-}).listen(3000);
+}).listen(3000, () => {
+	console.log("쉽지않네요"); 
+	
+}); 
