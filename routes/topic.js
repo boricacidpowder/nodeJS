@@ -5,9 +5,9 @@ var fs = require('fs');
 var sanitizeHtml = require('sanitize-html');
 var template = require('../lib/template.js');
 
-router.get('/create', function(request, response){
+router.get('/create', function(req, res){
     var title = 'WEB - create';
-    var list = template.list(request.list);
+    var list = template.list(req.list);
     var html = template.HTML(title, list, `
       <form action="/topic/create_process" method="post">
         <p><input type="text" name="title" placeholder="title"></p>
@@ -19,23 +19,23 @@ router.get('/create', function(request, response){
         </p>
       </form>
     `, '');
-    response.send(html);
+    res.send(html);
   });
   
-  router.post('/create_process', function(request, response){
-    var post = request.body;
+  router.post('/create_process', function(req, res){
+    var post = req.body;
     var title = post.title;
     var description = post.description;
     fs.writeFile(`data/${title}`, description, 'utf8', function(err){
-      response.redirect(`/topic/${title}`);
+      res.redirect(`/topic/${title}`);
     });
   });
   
-  router.get('/update/:pageId', function(request, response){
-    var filteredId = path.parse(request.params.pageId).base;
+  router.get('/update/:pageId', function(req, res){
+    var filteredId = path.parse(req.params.pageId).base;
     fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
-      var title = request.params.pageId;
-      var list = template.list(request.list);
+      var title = req.params.pageId;
+      var list = template.list(req.list);
       var html = template.HTML(title, list,
         `
         <form action="/topic/update_process" method="post">
@@ -51,43 +51,43 @@ router.get('/create', function(request, response){
         `,
         `<a href="/topic/create">create</a> <a href="/topic/update/${title}">update</a>`
       );
-      response.send(html);
+      res.send(html);
     });
   });
   
-  router.post('/update_process', function(request, response){
-    var post = request.body;
+  router.post('/update_process', function(req, res){
+    var post = req.body;
     var id = post.id;
     var title = post.title;
     var description = post.description;
     fs.rename(`data/${id}`, `data/${title}`, function(error){
       fs.writeFile(`data/${title}`, description, 'utf8', function(err){
-        response.redirect(`/topic/${title}`);
+        res.redirect(`/topic/${title}`);
       })
     });
   });
   
-  router.post('/delete_process', function(request, response){
-    var post = request.body;
+  router.post('/delete_process', function(req, res){
+    var post = req.body;
     var id = post.id;
     var filteredId = path.parse(id).base;
     fs.unlink(`data/${filteredId}`, function(error){
-      response.redirect('/');
+      res.redirect('/');
     });
   });
   
-  router.get('/:pageId', function(request, response, next) { 
-    var filteredId = path.parse(request.params.pageId).base;
+  router.get('/:pageId', function(req, res, next) { 
+    var filteredId = path.parse(req.params.pageId).base;
     fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
       if(err){
         next(err);
       } else {
-        var title = request.params.pageId;
+        var title = req.params.pageId;
         var sanitizedTitle = sanitizeHtml(title);
         var sanitizedDescription = sanitizeHtml(description, {
           allowedTags:['h1']
         });
-        var list = template.list(request.list);
+        var list = template.list(req.list);
         var html = template.HTML(sanitizedTitle, list,
           `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
           ` <a href="/topic/create">create</a>

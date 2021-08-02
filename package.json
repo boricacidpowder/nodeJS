@@ -16,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon cookie.js"
+    "start": "nodemon main.js"
   },
   "repository": {
     "type": "git",
