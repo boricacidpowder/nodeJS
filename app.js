@@ -14,6 +14,9 @@ const indexRouter = require('./routes'),
 	userRouter = require('./routes/user');
 const app = express();
 app.set('port', process.env.PORT || 3000);
+//pug 사용
+app.set('views', path.join(__dirname, 'views'));
+app.set('views engine', 'pug');
 
 app.use(morgan('dev'));
 app.use('/', express.static(path.join(__dirname, 'public')));
@@ -79,26 +82,24 @@ app.post('/upload',
 	);
 
 
-
-app.use((req, res, next) =>{
-	console.log('모든 요청에 다 실행됩니다.');
-	next();
+// 404 처리 미들웨어
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/', (req, res, next) =>{
-	console.log('GET / 요청에만');
-	next();
-},(req, res)=>{
-	throw new Error('에러는 에러처리 미들웨어로 갑니다.');
+// 에러 핸들러
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
-
-
-
-app.get('/',(req, res) => {
-	res.sendFile(path.join(__dirname, '/index.html'));
-});
-
 
 app.listen(app.get('port'), () => {
 	console.log(app.get('port'), '에서 대기중');
 });
+
+module.exports = app;
