@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//개발환경('production')가 아닐 때 몽구스가 생성하는 쿼리 내용를 콘솔에 출력
 const connect = () => {
   if (process.env.NODE_ENV !== 'production') {
     mongoose.set('debug', true);

@@ -8,7 +8,7 @@ const nunjucks = require('nunjucks');
 
 const connect = require('./mongo');
 
-// dotenv.config();
+dotenv.config();
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user');
 const commentsRouter = require('./routes/comments');
@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
 	res.locals.message = err.message;
+	//process.env.NODE_ENV 가 production 가 아니면 err, 맞으면 {};
 	res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
 	console.log(process.env.NODE_ENV);
 	res.status(err.status || 500);
