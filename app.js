@@ -8,7 +8,7 @@ const nunjucks = require('nunjucks');
 
 const connect = require('./mongo');
 
-dotenv.config();
+// dotenv.config();
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user');
 const commentsRouter = require('./routes/comments');
