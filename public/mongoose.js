@@ -135,3 +135,17 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
   e.target.userid.value = '';
   e.target.comment.value = '';
 });
+//--------------------------------------------------------------------
+
+// // alert("메세지") == 알림창
+// // prompt("메세지", "디폴트값") == 값을 입력받을때
+// //	문자형으로 받음
+
+// const age = prompt("나이는 : ");
+// if(age>19){
+// 	alert('환영!');
+// } else {
+// 	alert('잘가!');
+// }
+
+//객체
