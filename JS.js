@@ -27,23 +27,85 @@
 //접근 = tmddyd.name,['age']
 //추가 = tmddyd.gender = 'male';
 //삭제 = delete tmddyd.gender;
-makeObject = (user) =>{
-	if(!('age' in user) ||  //user 안에 'age'가 없거나
-	   user.age < 20){		//age 가 20 미만이면
-		return false;
-	}
-	return true;
+// makeObject = (user) =>{
+// 	if(!('age' in user) ||  //user 안에 'age'가 없거나
+// 	   user.age < 20){		//age 가 20 미만이면
+// 		return false;
+// 	}
+// 	return true;
+// }
+
+
+// const A = {
+// 	name : "a",
+// 	age : 30
+// };
+
+// const B ={
+// 	name : "b"
+// };
+
+// console.log(makeObject(B));
+// console.log(makeObject(A));
+
+// let boy = {
+// 	name:'gg',
+// 	showName:() => {
+// 		console.log(this)
+// 	}
+// };
+// boy.showName();
+
+
+//배열!
+// let days = ['월', '화', '수', '목'];
+
+
+// days[1] = 'tue';
+// console.log(days);
+
+// for(let index = 0; index < days.length; index++){
+// 	console.log(days[index]);
+// }
+ 
+//생성자 함수!
+// function User(name, age){
+// 	this.name = name;
+// 	this.age = age;
+// 	this.sayName = function(){
+// 		console.log(`내 이름은 ${this.name} 입니다.`);
+// 	}
+// }
+
+// let user1 = new User('후하', 15);
+// let user2 = new User('히히', 24);
+// user2.sayName();
+// console.log(user1);
+
+//객체 메소드!
+// const user = {
+// 	name : 'mike',
+// 	age : 30,
+// 	gender : 'male',
+// }
+
+// const result = Object.entries(user);
+
+// console.log(result);
+
+//심볼! 유일설 보장    Symbol.for() 전역심볼!
+const id = Symbol('id');
+const user = {
+	name : 'mike',
+	age : 24,
+	[id] : 'tmddyd'
 }
 
+console.log(user);
+let a = Object.keys(user);
+console.log(a);
+여기가 존나 어렵네요,
+	
 
-const A = {
-	name : "a",
-	age : 30
-};
 
-const B ={
-	name : "b"
-};
 
-console.log(makeObject(B));
-console.log(makeObject(A));
