@@ -60,7 +60,17 @@
 //배열!
 // let days = ['월', '화', '수', '목'];
 
+// const sayHello = (name) => {
+// 	const msg = `hello, ${name}`;
+// 	console.log(msg);
+// };
 
+// sayHello('tmddyd');
+
+const add = (num1, num2) => 
+	num1 * num2;
+
+console.log(add(600,14));
 // days[1] = 'tue';
 // console.log(days);
 
@@ -107,12 +117,75 @@
 //여기가 존나 어렵네요,
 
 
- 
-const sayHello = (name) => {
-	const msg = `hello, &{name}`;
-	console.log(msg);
+// const id = Symbol('id'); // new 가 붙지않음! 유일한 식별자
+// const user = {
+// 	name : 'tmddyd',
+// 	age : 23,
+// 	[id] : 'gkgk'
+// };
+// console.log(user);// { name: 'tmddyd', age: 23, [Symbol(id)]: 'gkgk' }
+// console.log(Object.keys(user));// [ 'name', 'age' ]
+// console.log(Object.values(user));//
+// console.log(Object.entries(user));// 이 세가지는 Symbol을 건너뜀.
+
+// //심볼을 사용하는 이유는 원본객체를 건드리지 않고 접근할수있다.
+
+// Symbol.for() // 전역 심볼. 1. 하나의 심볼만 보장 2.없으면 만들고 있으면 가져옴 3.심볼들은 매번 다른 값을 생성하지만 이건 하나를 만들고 그걸 가져옴
+// Reflect.ownKeys() // 심볼 포함 객체안에있는 모든걸 보여줌
+
+
+// const user = {
+// 	name : '승용',
+// 	age : 23,
+// };
+
+// //user.showname =function(){}
+// const showName = Symbol('show name');
+// user[showName] = function(){
+// 	console.log(this.name);
+// }
+
+// user[showName]();
+
+
+// for(let key in user){
+// 	console.log(`His ${key} is ${user[key]}.`);
+//}
+
+
+// toString() // 10진수를 2진수/16진수로
+
+// let num = 255;
+
+// console.log(num.toString(16));
+// num.toString(2);
+
+
+// Math.ceil() //올림
+// Math.floor() //내림
+// Math.round() // 반올림
+
+// toFixed() // 소수점자릿수 문자열로 반환함. Number을로 다시 받아서 하는 경우가 많음
+
+// isNaN() // NaN 인지 확인하는것
+
+// parselnt() // 문자를 숫자로가져옴. 10px == 10, f3 == NaN
+//console.log(Math.sqrt(2135));
+
+//문자열 String
+
+// let desc = "hello, Nice to meet you.";
+// console.log(desc.indexOf('to')); //문자열의 위치를 찾아줌. 문자열에 없는 문자면 -1을 반환함
+// trim() //앞뒤 공백 제거
+
+function hasCola(str) {
+	if(str.includes('콜라')){
+		console.log('금칠어가 있습니다.');
+	}else{
+		console.log("통과");
+	}
 }
-	
-
-
+hasCola("와 사이다가 짱이야");
+hasCola("콜라가 좋아!");
+hasCola("콜라");
 
