@@ -94,17 +94,24 @@
 // console.log(result);
 
 //심볼! 유일설 보장    Symbol.for() 전역심볼!
-const id = Symbol('id');
-const user = {
-	name : 'mike',
-	age : 24,
-	[id] : 'tmddyd'
-}
+// const id = Symbol('id');
+// const user = {
+// 	name : 'mike',
+// 	age : 24,
+// 	[id] : 'tmddyd'
+// }
 
-console.log(user);
-let a = Object.keys(user);
-console.log(a);
-여기가 존나 어렵네요,
+// console.log(user);
+// let a = Object.keys(user);
+// console.log(a);
+//여기가 존나 어렵네요,
+
+
+ 
+const sayHello = (name) => {
+	const msg = `hello, &{name}`;
+	console.log(msg);
+}
 	
 
 
