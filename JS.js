@@ -326,19 +326,108 @@ console.log(add(600,14));
 
 
 
-let user = { name : 'mike'};
-let info = { age : 24};
-let fe = ['js', 'React'];
-let lang = ['Kor', 'Eng'];
-console.log(user);
-user = {
-	...user,
-	...info,
-	skills:[
-		...fe,
-		...lang
-	],
+// let user = { name : 'mike'};
+// let info = { age : 24};
+// let fe = ['js', 'React'];
+// let lang = ['Kor', 'Eng'];
+// console.log(user);
+// user = {
+// 	...user,
+// 	...info,
+// 	skills:[
+// 		...fe,
+// 		...lang
+// 	],
+// };
+
+// console.log(user);
+
+//셋타임아웃, 셋인터벌
+//				   3초
+//setTimeout(fn, 3000, 필요한 인수); == 두번째 넣은 시간만큼 기다렸다가 실행
+//setInterval(fn, 3000, 필요한 인수); == 두번째 넣은 시간만큼마다 실행
+
+// let num = 0;
+
+// function showTime() {
+// 	console.log(`지금은 ${num++}초 입니다.`);
+// 	if(num > 5) {
+// 		clearInterval(tId); // 스캐줄링 해놓은걸 없애는거
+// 	}
+// }
+
+// const tId = setInterval(showTime, 1000);
+
+
+//call, apply, bind
+//call메서드는 모든 함수에서 사용할 수 있으며, this를 특정값으로 지정할 수 있다.
+//showThisName.call(mike);
+
+//apply는 함수 매개변수를 처리하는 방법을 제외하면 call과 똑같다.
+//apply는 매개변수를 배열로 받는다.
+
+//bind 는 함수의 this값을 영구히 바꿀수 있다.
+
+// const mike = {
+// 	name: 'mike',
+// };
+
+// const tom = {
+// 	name: 'tom',
+// };
+
+// function showThisName() {
+// 	console.log(this.name);
+// }
+// function update(birthYear, occupation){
+// 	this.birthYear = birthYear;
+// 	this.occupation = occupation;
+// };
+
+
+// showThisName();
+// showThisName.call(tom);
+
+// update.apply(mike, [1999, 'singer']);
+// console.log(mike);
+
+// update.apply(tom, [1997, 'teacher']);
+// console.log(tom);
+
+// const nums = [3,10,1,6,5];
+
+// const minNum = Math.min.apply(null, nums);
+// const maxNum = Math.max.call(null, ...nums);
+// console.log(minNum);
+// console.log(maxNum);
+
+const mike = {
+	name: 'mike',
+};
+function update(birthYear, occupation){
+	this.birthYear = birthYear;
+	this.occupation = occupation;
 };
 
-console.log(user);
+const updateMike = update.bind(mike);
+updateMike(1980,"police");
+console.log(mike);
+
+
+const user = {
+	name: 'mike',
+	showName: function(){
+		console.log(`hello, ${this.name}`);
+	},
+};
+
+user.showName();
+
+let fn = user.showName;
+fn.call(user);
+fn.apply(user);
+
+let boundFn = fn.bind(user);
+
+boundFn();
 
