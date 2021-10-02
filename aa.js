@@ -9,4 +9,4 @@ person.driver = person.age !==16 ? 'Yes' : 'No';
 // } else {
 //   person.driver = 'No';
 // }
-console.log(person.driver)
+console.log(person.driver);

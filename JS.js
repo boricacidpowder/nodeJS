@@ -178,14 +178,167 @@ console.log(add(600,14));
 // console.log(desc.indexOf('to')); //문자열의 위치를 찾아줌. 문자열에 없는 문자면 -1을 반환함
 // trim() //앞뒤 공백 제거
 
-function hasCola(str) {
-	if(str.includes('콜라')){
-		console.log('금칠어가 있습니다.');
-	}else{
-		console.log("통과");
-	}
-}
-hasCola("와 사이다가 짱이야");
-hasCola("콜라가 좋아!");
-hasCola("콜라");
+// function hasCola(str) {
+// 	if(str.includes('콜라')){
+// 		console.log('금칠어가 있습니다.');
+// 	}else{
+// 		console.log("통과");
+// 	}
+// }
+// hasCola("와 사이다가 짱이야");
+// hasCola("콜라가 좋아!");
+// hasCola("콜라");
+
+
+
+//배열!
+// let arr = ['a', 'b', 'c'];
+// arr.forEach((name, index) => {
+// 	console.log(`${index +1}. ${name}`);
+// });
+
+// let rr = [1,2,3,4,5,6,7];
+
+// const result = rr.find((item) => {
+// 	return item %2 === 0;
+// });
+
+// console.log(result);
+
+
+// let user = [
+// 	{name : 'a', age : 30},
+// 	{name : 'b', age : 12},
+// 	{name : 'c', age : 23},
+// ];
+
+// const res = user.findIndex((user) => {
+// 	if(user.age < 19){
+// 		return true;
+// 	}
+// 	return false;
+// });
+
+// console.log(res);
+
+// let rr = [1,2,3,4,5,6,7];
+
+// const result = rr.filter((item) => {
+// 	return item %2 === 0;
+// });
+
+// console.log(result);
+
+
+// let user = [
+// 	{name : 'a', age : 30},
+// 	{name : 'b', age : 12},
+// 	{name : 'c', age : 23},
+// ];
+
+// let newuser = user.map((user, index) => {
+// 	return Object.assign({}, user, {
+// 		id: index + 1,
+// 		isAdult: user.age > 19,
+// 	});
+// });
+
+
+// let a = ['안녕', '나는', '철수야'];
+
+// let b = a.join(" ");
+// console.log(b);
+// console.log(newuser);
+// console.log(Array.isArray(user));
+// console.log(Array.isArray(a));
+
+
+// let arr = [1,2,3,4,5];
+// function fn(a,b){
+// 	return a-b;
+// }
+
+// arr.sort(fn);
+
+// console.log(arr);
+
+// let result = 0;
+// arr.forEach(num => {
+// 	result += num;
+// });
+
+// //				     이전값  현재값
+// const r = arr.reduce((prev, cur) => {
+// 	return prev + cur;
+// }, 0)// 초기값
+// console.log(r);
+
+// let user = [
+// 	{name : 'a', age : 30},
+// 	{name : 'b', age : 12},
+// 	{name : 'c', age : 23},
+// ];
+
+// let res = user.reduce((prev, cur) => {
+// 	if(cur.age > 19){
+// 		prev.push(cur.name);
+// 	}
+// 	return prev;
+// }, []);
+
+// console.log(res);
+
+//구조분해할당?
+
+//arguments, 나머지 매개변수
+
+// function a(...numbers) {
+// 	let result = numbers.reduce((prev, cur) => prev + cur);
+// 	console.log(result);
+// }
+
+// a(1,2,3);
+// a(1,2,3,4);
+
+
+// function User(name, age, ...skill) {
+// 	this.name = name;
+// 	this.age = age;
+// 	this.skill = skill;
+// }
+
+// const user1 = new User('abb', 30, 'html', 'js');
+// const user2 = new User('hhh', 12, 'c++', 'React');
+
+
+// console.log(user1);
+// console.log(user2);
+
+// let arr1 = [1,2,3];
+// let arr2 = [4,5,6];
+// // arr2.forEach(num => {
+// // 	arr1.unshift(num);
+// // });
+
+// arr1 = [...arr2, ...arr1];
+
+// console.log(arr1);
+
+
+
+let user = { name : 'mike'};
+let info = { age : 24};
+let fe = ['js', 'React'];
+let lang = ['Kor', 'Eng'];
+console.log(user);
+user = {
+	...user,
+	...info,
+	skills:[
+		...fe,
+		...lang
+	],
+};
+
+console.log(user);
 
