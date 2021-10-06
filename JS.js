@@ -67,10 +67,10 @@
 
 // sayHello('tmddyd');
 
-const add = (num1, num2) => 
-	num1 * num2;
+// const add = (num1, num2) => 
+// 	num1 * num2;
 
-console.log(add(600,14));
+// console.log(add(600,14));
 // days[1] = 'tue';
 // console.log(days);
 
@@ -401,33 +401,188 @@ console.log(add(600,14));
 // console.log(minNum);
 // console.log(maxNum);
 
-const mike = {
-	name: 'mike',
+// const mike = {
+// 	name: 'mike',
+// };
+// function update(birthYear, occupation){
+// 	this.birthYear = birthYear;
+// 	this.occupation = occupation;
+// };
+
+// const updateMike = update.bind(mike);
+// updateMike(1980,"police");
+// console.log(mike);
+
+
+// const user = {
+// 	name: 'mike',
+// 	showName: function(){
+// 		console.log(`hello, ${this.name}`);
+// 	},
+// };
+
+// user.showName();
+
+// let fn = user.showName;
+// fn.call(user);
+// fn.apply(user);
+
+// let boundFn = fn.bind(user);
+
+// boundFn();
+
+// 상속, 프로토타입
+
+// const car = {
+// 	wheels:4,
+// 	drive() {
+// 		console.log("drive...");
+// 	},
+// };
+
+// const bmw = {
+// 	color: 'red',
+// 	navigation: 1,
+// };
+
+// bmw.__proto__ = car;
+
+// const x5 = {
+// 	color:'white',
+// 	name:'x5',
+// };
+// x5.__proto__ = bmw;
+// for(p in bmw) {
+// 	if(x5.hasOwnProperty(p)) {
+// 		console.log('o', p);
+// 	}else {
+// 		console.log('x', p);
+// 	}
+// }
+
+
+// console.log(bmw);
+// console.log(x5);
+// console.log(x5.color);
+// console.log(bmw.color);
+// console.log(bmw.wheels);
+// // console.log(x5.navigation);
+// const car = {
+// 	wheels : 4,
+// 	drive() {
+// // 		console.log('drive...');
+// // 	},
+// // };
+
+
+// const Bmw = function(color) {
+// 	this.color = color;
+// };
+
+// Bmw.prototype.wheels = 4;
+// Bmw.prototype.drive = function(){
+// 	console.log('drive');
+// };
+// Bmw.prototype.navigation = 1;
+// Bmw.prototype.stop = function(){
+// 	console.log('STOP!');
+// }
+
+// //이렇게 해도 되지만, 이러면 생성자가 따로 뜨지 않아서 직접 명시 해줘야함.
+// //constructor = Bmw;
+// // Bmw.prototype = {
+// // 	wheels : 4,
+// // 	drive(){
+// // 		console.log('drive');
+// // 	},
+// // 	navigation: 1,
+// // 	stop() {
+// // 		console.log('stop!');
+// // 	},
+// // };
+
+
+// const x5 = new Bmw('red');
+// const z4 = new Bmw('blue');
+// console.log(x5.stop());
+// console.log(z4.navigation);
+// // x5.__proto__ = car;
+// // z4.__proto__ = car;
+
+// const bmw = function(color) {
+// 	const c = color;
+// 	this.getColor = function(){
+// 		console.log(c);
+// 	};
+// };
+
+
+// const x5 = new bmw('red');
+
+// console.log(x5.getColor());
+
+
+
+//Class
+//클래스는 new 가 빠지면 오류가 난다.
+
+class User2 {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	showName(){
+		console.log(this.name);
 };
-function update(birthYear, occupation){
-	this.birthYear = birthYear;
-	this.occupation = occupation;
 };
 
-const updateMike = update.bind(mike);
-updateMike(1980,"police");
-console.log(mike);
+const tom = new User2('tom', 19);
+
+console.log(tom.showName());
+for(const p in tom) {
+	console.log(p);
+}
+
+//클래스 상속
+//extends
 
 
-const user = {
-	name: 'mike',
-	showName: function(){
-		console.log(`hello, ${this.name}`);
-	},
-};
+class Car{
+	constructor(color) {
+		this.color = color;
+		this.wheels = 4;
+	}
+	drive(){
+		console.log('drive');
+	}
+	stop(){
+		console.log('stop!');
+	}
+}
 
-user.showName();
 
-let fn = user.showName;
-fn.call(user);
-fn.apply(user);
 
-let boundFn = fn.bind(user);
+class Bmw extends Car {
+	constructor(color) { // 이걸 쓰려면 부모를 먼저 호출해야함.
+		super(color); // 이걸 사용해 주어야 애러가 안난다.
+		this.navigation = 1;
+	}
+	park() {
+		console.log('PARK');
+	}
+	
+	stop() {  // 상속받는데 똑같은것이 있으면 덮어쓰기가 됨.
+		// super.stop(); // 이걸 써주면 상속받는것도 가져옴.
+		console.log('off');
+	}
+}
 
-boundFn();
 
+
+const z4 = new Bmw('blue');
+
+
+console.log(z4.color);
+console.log(z4.stop());
+console.log(z4.drive());
+console.log(z4.navigation);
